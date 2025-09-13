@@ -4,83 +4,114 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ibrahim Alagwat - ab.king</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth; }
-    body {
-        min-height: 100vh;
-        background-color:#000;
-        color:#fff;
-        font-family: 'Traditional Arabic', Cairo, Arial, sans-serif;
-        font-weight: bold;
-        overflow-x:hidden;
-        transition: background 0.5s, color 0.5s;
-    }
-    body.light { background-color:#fff; color:#000; }
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth; }
+body {
+    min-height: 100vh;
+    background-color:#000;
+    color:#fff;
+    font-family: 'Traditional Arabic', Cairo, Arial, sans-serif;
+    font-weight: bold;
+    overflow-x:hidden;
+    transition: background 0.5s, color 0.5s;
+}
+body.light { background-color:#fff; color:#000; }
 
-    section { min-height: 100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center; }
+section { min-height: 100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center; }
 
-    h1 { font-size:3rem; margin-bottom:10px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); transition: text-shadow 0.5s; }
-    body.light h1 { text-shadow:2px 2px 5px rgba(200,200,200,0.5); }
+h1 { font-size:3rem; margin-bottom:10px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); transition: text-shadow 0.5s; }
+body.light h1 { text-shadow:2px 2px 5px rgba(200,200,200,0.5); }
 
-    .title { font-size:1.5rem; margin-bottom:20px; opacity:0.9; }
-    .bio { font-size:1.2rem; line-height:1.8; max-width:800px; margin-bottom:30px; }
+.title { font-size:1.5rem; margin-bottom:20px; opacity:0.9; }
+.bio { font-size:1.2rem; line-height:1.8; max-width:800px; margin-bottom:30px; }
 
-    .buttons { display:flex; flex-direction:column; gap:15px; width:250px; }
-    .buttons a {
-        display:block; padding:15px; border-radius:12px; color:#fff; font-weight:bold;
-        text-decoration:none; font-size:1.1rem; position: relative; overflow: hidden;
-        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    }
-    .buttons a::after {
-        content:""; position:absolute; top:0; left:-100%; width:100%; height:100%;
-        background: rgba(255,255,255,0.2); transition: left 0.5s;
-    }
-    .buttons a:hover::after { left:100%; }
-    .buttons a:hover { transform: translateY(-5px) scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.4); }
+.buttons { display:flex; flex-direction:column; gap:15px; width:250px; }
+.buttons a {
+    display:block; padding:15px; border-radius:12px; color:#fff; font-weight:bold;
+    text-decoration:none; font-size:1.1rem; position: relative; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.buttons a::after {
+    content:""; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background: rgba(255,255,255,0.2); transition: left 0.5s;
+}
+.buttons a:hover::after { left:100%; }
+.buttons a:hover { transform: translateY(-5px) scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.4); }
 
-    /* ألوان الأزرار */
-    .snapchat { background-color:#FFFC00; color:#000; }
-    .instagram { background:#E1306C; }
-    .facebook { background:#3b5998; }
-    .discord { background:#5865F2; }
-    .x { background:#000; color:#fff; }
-    .tiktok { background:#000; color:#fff; }
-    .tiktok:hover { background: linear-gradient(45deg, #69C9D0, #EE1D52); }
+/* ألوان الأزرار */
+.snapchat { background-color:#FFFC00; color:#000; }
+.instagram { background:#E1306C; }
+.facebook { background:#3b5998; }
+.discord { background:#5865F2; }
+.x { background:#000; color:#fff; }
+.tiktok { background:#000; color:#fff; }
+.tiktok:hover { background: linear-gradient(45deg, #69C9D0, #EE1D52); }
 
-    .darkmode-btn {
-        position: fixed; top: 20px; right: 20px; padding:12px 18px;
-        border:none; border-radius:8px; font-weight:bold; cursor:pointer;
-        background: linear-gradient(90deg,#00c6ff,#0072ff); color:#fff; z-index:1000;
-    }
+.darkmode-btn {
+    position: fixed; top: 20px; right: 20px; padding:12px 18px;
+    border:none; border-radius:8px; font-weight:bold; cursor:pointer;
+    background: linear-gradient(90deg,#00c6ff,#0072ff); color:#fff; z-index:1000;
+}
 
-    /* حبيبات الذهبية */
-    .particle { position:absolute; width:4px; height:4px; border-radius:50%;
-        opacity:0.8; animation: float 10s linear infinite; background: gold; transition: background 0.5s;
-    }
-    body.light .particle { background: #000; }
+/* الهامبرغر والقائمة الجانبية */
+.hamburger {
+    position: fixed; top: 20px; left: 20px; width:35px; height:30px;
+    display:flex; flex-direction:column; justify-content:space-between; cursor:pointer; z-index:1000;
+}
+.hamburger div { height:5px; background:#fff; border-radius:3px; transition: all 0.3s ease; }
+body.light .hamburger div { background:#000; }
 
-    @keyframes float { 0%{transform:translateY(100vh) translateX(0);} 100%{transform:translateY(-10vh) translateX(50vw);} }
+.nav-menu {
+    position: fixed; top:0; left:-250px; width:250px; height:100%;
+    background: rgba(0,0,0,0.95); display:flex; flex-direction:column; padding:60px 20px; transition: left 0.3s ease; z-index:999;
+}
+body.light .nav-menu { background: rgba(255,255,255,0.95); }
+.nav-menu a { color:#fff; text-decoration:none; margin:15px 0; font-weight:bold; font-size:1.2rem; transition: color 0.3s; }
+body.light .nav-menu a { color:#000; }
+.nav-menu a:hover { text-decoration:underline; }
 
-    /* أزرار التنقل */
-    .nav-buttons { position:fixed; left:20px; bottom:40px; display:flex; flex-direction:column; gap:15px; z-index:1000; }
-    .nav-buttons button { padding:10px 15px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;
+/* حبيبات الذهبية */
+.particle { position:absolute; width:4px; height:4px; border-radius:50%; opacity:0.8; animation: float 10s linear infinite; background: gold; transition: background 0.5s; }
+body.light .particle { background: #000; }
+@keyframes float { 0%{transform:translateY(100vh) translateX(0);} 100%{transform:translateY(-10vh) translateX(50vw);} }
+
+/* أزرار التنقل */
+.nav-buttons { position:fixed; left:20px; bottom:40px; display:flex; flex-direction:column; gap:15px; z-index:1000; }
+.nav-buttons button { padding:10px 15px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;
         background: linear-gradient(90deg,#ff6a00,#ee0979); color:#fff; transition: transform 0.3s; }
-    .nav-buttons button:hover { transform: scale(1.1); }
+.nav-buttons button:hover { transform: scale(1.1); }
 
-    /* تنسيق آخر التغريدات */
-    #latest-tweets { padding:30px; width:90%; max-width:800px; margin:auto; }
-    #latest-tweets h2 { margin-bottom:15px; font-size:1.8rem; }
-    @media (max-width:768px){
-        h1{font-size:2.2rem;}
-        .bio{font-size:1.1rem;}
-        .buttons{width:200px;}
-        .buttons a{font-size:1rem; padding:12px;}
-        .nav-buttons{left:10px; bottom:20px;}
-        .nav-buttons button{padding:8px 12px;}
-    }
+/* آخر التغريدات */
+#latest-tweets { padding:30px; width:90%; max-width:800px; margin:auto; }
+#latest-tweets h2 { margin-bottom:15px; font-size:1.8rem; }
+
+@media (max-width:768px){
+    h1{font-size:2.2rem;}
+    .bio{font-size:1.1rem;}
+    .buttons{width:200px;}
+    .buttons a{font-size:1rem; padding:12px;}
+    .nav-buttons{left:10px; bottom:20px;}
+    .nav-buttons button{padding:8px 12px;}
+}
 </style>
 </head>
 <body>
+
+<!-- الهامبرغر -->
+<div class="hamburger" id="hamburger">
+    <div></div><div></div><div></div>
+</div>
+
+<!-- القائمة الجانبية -->
+<div class="nav-menu" id="nav-menu">
+    <a href="#section1">الرئيسية</a>
+    <a href="#section2">عنّي</a>
+    <a href="#section3">حساباتي</a>
+    <a href="#latest-tweets">تغريداتي</a>
+    <a href="discord-info.html">معلومات السيرفر</a> <!-- الزر الجديد -->
+</div>
+</div>
 
 <button class="darkmode-btn">تبديل الوضع</button>
 
@@ -109,7 +140,6 @@
     </div>
 </section>
 
-<!-- مربع حقوق الإنشاء -->
 <section id="footer">
     <div style="
         background:#fff;
@@ -124,7 +154,6 @@
     </div>
 </section>
 
-<!-- آخر التغريدات -->
 <section id="latest-tweets">
     <h2>آخر تغريداتي على X</h2>
     <a class="twitter-timeline" href="https://twitter.com/b75_d">Tweets by b75_d</a>
@@ -145,7 +174,15 @@
         document.body.classList.toggle('light');
     });
 
-    // إنشاء الحبيبات الذهبية
+    // الهامبرغر
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', ()=>{
+        if(navMenu.style.left==='0px'){ navMenu.style.left='-250px'; } 
+        else { navMenu.style.left='0px'; }
+    });
+
+    // الحبيبات الذهبية
     for(let i=0;i<60;i++){
         let particle=document.createElement('div');
         particle.classList.add('particle');
@@ -156,7 +193,8 @@
         particle.style.animationDuration=(5+Math.random()*10)+'s';
         particle.style.opacity=0.3+Math.random()*0.7;
         document.body.appendChild(particle);
+        
     }
 </script>
 </body>
-  </html>
+           </html>
