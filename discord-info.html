@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معلومات سيرفر ديسكورد</title>
+<style>
+body {
+    background-color:#0b0b0b;
+    color:white;
+    font-family:'Traditional Arabic', Cairo, Arial, sans-serif;
+    margin:0; padding:0;
+    overflow-x:hidden;
+    transition: background 0.5s, color 0.5s;
+}
+body.light { background-color:#f2f2f2; color:#000; }
+
+.hamburger {
+    position:fixed;
+    top:20px;
+    left:20px;
+    width:35px;
+    height:30px;
+    cursor:pointer;
+    z-index:1000;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+.hamburger div {
+    height:5px;
+    background:#fff;
+    border-radius:3px;
+    transition: all 0.3s ease;
+}
+body.light .hamburger div { background:#000; }
+
+.nav-menu {
+    position:fixed;
+    top:0;
+    left:-250px;
+    width:250px;
+    height:100%;
+    background:rgba(0,0,0,0.95);
+    display:flex;
+    flex-direction:column;
+    padding:60px 20px;
+    transition: left 0.3s ease;
+    z-index:999;
+}
+body.light .nav-menu { background:rgba(255,255,255,0.95); }
+.nav-menu a {
+    color:#fff;
+    text-decoration:none;
+    margin:15px 0;
+    font-weight:bold;
+    font-size:1.2rem;
+    transition: color 0.3s;
+}
+body.light .nav-menu a { color:#000; }
+.nav-menu a:hover { text-decoration:underline; }
+
+h1 {
+    text-align:center;
+    color:#ffd700;
+    font-size:2.5rem;
+    margin-top:60px;
+}
+
+.container {
+    width:100%;
+    max-width:500px;
+    margin:50px auto;
+    text-align:center;
+    position:relative;
+    padding:20px;
+    border-radius:12px;
+}
+
+iframe {
+    border-radius:12px;
+    border:none;
+    width:100%;
+    height:500px;
+    max-width:100%;
+}
+
+.darkmode-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding:12px 18px;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    background: linear-gradient(90deg,#ffd700,#ff8c00);
+    color:#000;
+    z-index:1000;
+}
+
+.particle {
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    opacity:0.8;
+    animation: float 10s linear infinite;
+    background: gold;
+    transition: background 0.5s;
+}
+body.light .particle { background: #000; }
+
+@keyframes float {
+    0% {transform:translateY(100vh) translateX(0);}
+    100% {transform:translateY(-10vh) translateX(50vw);}
+}
+
+@media (max-width:768px){
+    h1{font-size:2rem;}
+    iframe { height:400px; }
+}
+</style>
+</head>
+<body>
+
+<!-- الهامبرغر -->
+<div class="hamburger" id="hamburger">
+    <div></div><div></div><div></div>
+</div>
+
+<div class="nav-menu" id="nav-menu">
+    <a href="index.html">الرئيسية</a>
+    <a href="discord-info.html">معلومات السيرفر</a>
+</div>
+
+<button class="darkmode-btn">تبديل الوضع</button>
+
+<section class="container">
+    <h1>معلومات سيرفر ديسكورد</h1>
+    <iframe 
+        src="https://discord.com/widget?id=1399418810162745344&theme=dark" 
+        allowtransparency="true" 
+        frameborder="0" 
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+    </iframe>
+</section>
+
+<script>
+// تبديل الوضع داكن / فاتح
+const darkBtn = document.querySelector('.darkmode-btn');
+darkBtn.addEventListener('click', ()=>{
+    document.body.classList.toggle('light');
+});
+
+// الهامبرغر
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+hamburger.addEventListener('click', ()=>{
+    if(navMenu.style.left==='0px'){ navMenu.style.left='-250px'; } 
+    else { navMenu.style.left='0px'; }
+});
+
+// الحبيبات الذهبية
+for(let i=0;i<60;i++){
+    let p=document.createElement('div');
+    p.classList.add('particle');
+    p.style.left=Math.random()*100+'vw';
+    p.style.top=Math.random()*100+'vh';
+    p.style.width=(2+Math.random()*3)+'px';
+    p.style.height=p.style.width;
+    p.style.animationDuration=(5+Math.random()*10)+'s';
+    p.style.opacity=0.3+Math.random()*0.7;
+    document.body.appendChild(p);
+}
+</script>
+</body>
+  </html>
